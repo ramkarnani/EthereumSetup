@@ -1,0 +1,30 @@
+1. geth init Genesis.json -datadir Chaindata/.  --> initializing the genesis block using json file and storing in chaindata folder
+2. geth --datadir Chaindata --rpc --rpcapi "eth,web3,miner,admin,personal,net" --rpccorsdomain * --nodiscover --networkid 15
+	allow rpc connections, these rpc api can connect, all domains from eth,web3 etch. should be able to call me though i would be in nodiscover mode
+3. Open a new terminal, geth attach http://127.0.0.1:8545
+4. Type in the terminal:
+	eth.createAccount() -->gives you the address of the account
+5. Setup coinbase account:
+	miner.setEtherbase('0x2c887a97d1e7512a14042e1f3ab5a6498b8c0af2')
+6. Get balance:
+	eth.getBalance(eth.accounts[0]) - in wei
+	web3.fromWei(eth.getBalance(eth.accounts[0])) - in eth
+7. Start mining:
+	miner.start()
+	miner.stop()
+
+8. Create another accounts
+9. Ensure that the miner is running
+10. Unlock the account:
+	personal.unlockAccount(eth.accounts[0])
+[txpool.getstatus ->]
+11. Send/do the transaction
+	var sender = eth.accounts[0];
+	var receiver = eth.accounts[1];
+	var amount = web3.toWei(0.01, "ether")
+	eth.sendTransaction({from:sender, to:receiver, value: amount})
+12. Use the commands:
+	eth
+	personal
+	admin
+	miner
